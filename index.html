@@ -10,7 +10,7 @@
 
 <body>
     
-    <nav class="navbar fixed-top navbar-dark bg-dark justify-content-center" >
+    <nav class="navbar fixed-top navbar-dark bg-dark justify-content-center">
         <a class="navbar-brand" href="#">Weather Dashboard</a>
     </nav>
    
@@ -24,7 +24,7 @@
                 <h4>Search for a City</h4>
                 <div class="row">
                 <div class="col-md-10">
-                <form class="form-inline d-flex justify-content-start md-form form-sm mt-0">
+                <form class="form-inline d-flex justify-content-start md-form form-sm mt-0"> <button type="button" class="btn btn-dark" id="select-city" type="submit" value="GO!">Go</button>
                     <i class="fas fa-search" aria-hidden="true"></i>
                     <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
                       aria-label="Search">
@@ -48,7 +48,7 @@
             </div>
             <div class="col-lg-9">
                 <div class="jumbotron">
-                    <h1 class="display-4">Hello, world!</h1>
+                    <h1 id= "city-name" class="display-4">Hello, world!</h1>
                     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
                     <hr class="my-4">
                     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
@@ -120,11 +120,37 @@
             </div>
         </div>
     </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+function searchWeather(city){
+    var queryUrl = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=795acf7e1929d29843c4de4d03c8de36";
+    $.ajax({
+        url:queryUrl,
+        method:"GET"
+    }).then(function(response){
+        console.log(response);
+
+        var cityName = $("city-name").text(response.name);
+      
+    }
+
+
+
+    )}
 
     
+  $("#select-city").on("click", function(event) {
+    
+    event.preventDefault();
+    
+    var inputCity = $("#city-input").val().trim();
 
+    searchWeather(inputCity);
+  });
 
-</body>
+</script>
 
 
 
