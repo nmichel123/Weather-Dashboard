@@ -3,6 +3,7 @@
 <head>
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href=/Users/guyfieri/Desktop/Weather-Dashboard/Assets/style.css> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
@@ -24,139 +25,28 @@
                 <h4>Search for a City</h4>
                 <div class="row">
                 <div class="col-md-10">
-                <form class="form-inline d-flex justify-content-start md-form form-sm mt-0"> <button type="button" class="btn btn-dark" id="select-city" type="submit" value="GO!">Go</button>
+                <form class="form-inline d-flex justify-content-start md-form form-sm mt-0"> <button type="button" class="btn btn-dark" id="search-city" type="submit" value="GO!">Go</button>
                     <i class="fas fa-search" aria-hidden="true"></i>
-                    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" id = "search-value"
                       aria-label="Search">
                   </form>
                 </div>
                 <br>
                 <br>
                 <div class="col-md-6">
-                    <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-light">Houston</button>
-                        <button type="button" class="btn btn-light">Austin</button>
-                        <button type="button" class="btn btn-light">Los Angeles</button>
-                        <button type="button" class="btn btn-light">Seattle</button>
-                        <button type="button" class="btn btn-light">New Mexico</button>
-                        <button type="button" class="btn btn-light">Atlanta</button>
-                        <button type="button" class="btn btn-light">Phoenix</button>
-                        <button type="button" class="btn btn-light">New York City</button>
-                    </div>
                 </div>
-                </div>
+                <ul class="list-group history"></ul>
             </div>
             <div class="col-lg-9">
-                <div class="jumbotron">
-                    <h1 id= "city-name" class="display-4"></h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                    <hr class="my-4">
-                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-                </div>
+                <div id="today" class="mt-3"></div>
+                <div id="forecast" class="mt-3"></div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-            <h3>5-Day Forecast</h3>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="col-md-6"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-                <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card" style="width: 10rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-function searchWeather(city){
-    var queryUrl = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=795acf7e1929d29843c4de4d03c8de36";
-    $.ajax({
-        url:queryUrl,
-        method:"GET",
-        
-    }).then(function(response){
-        
-        console.log(response);
-
-        var cityName = $("#city-name").text(response.name);
-
-        $("#city-name").empty();
-        $("#city-name").append(cityName);
-      
-    }
-
-
-
-    )}
-
-    
-  $("#select-city").on("click", function(event) {
-    
-    event.preventDefault();
-    
-    var inputCity = $("#city-input").val().trim();
-
-    searchWeather(inputCity);
-  });
-
-</script>
-
-
+<script src="script.js"></script>
 
 </html>
