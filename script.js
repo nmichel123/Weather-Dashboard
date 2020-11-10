@@ -2,8 +2,8 @@ $(document).ready(function(){
 
     // function to run user input through OpenWeather API
 
-    $("#search-city").on("click", function() {
-        var searchValue = $("#search-value").val("");
+    $("#search-button").on("click", function() {
+        var searchValue = $("#search-value").val();
 
         // Clearing input box
         $("#search-value").val("");
@@ -21,7 +21,7 @@ $(document).ready(function(){
     // Creates row for history section to be appended to
 
     function makeRow(text) {
-        var li = $("<li>").addClass("list-group-item-action").text(text);
+        var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
         $(".history").append(li);
     }
 
